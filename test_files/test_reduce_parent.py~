@@ -1,0 +1,25 @@
+import sys
+
+from modelrunner import ModelBase
+from mpi4py import MPI
+import numpy as np
+
+"""The idea is that the model holds all the variables and all
+   the calculation is defined inside of it """
+class CalcModel(ModelBase):
+    parameters_default = {"N": 100, "maxprocs": 5}
+    def __call__(self):
+        print(self.parameters["N"], self.parameters["maxprocs"])
+        comm = MPI.COMM_SELF.Spawn(sys.executable,
+                                   args=["child.py"],
+                                   maxprocs=self.parameters["maxprocs"])
+
+        N = np.array(self.parameters["N"], dtype='i')
+        comm.Bcast([N, MPI.INT], root=MPI.ROOT)
+        OUT = np.array(0, dtype='i')
+        comm.Reduce(None, [OUT, MPI.INT], op=MPI.SUM, root=MPI.ROOT)
+
+        print(OUT)
+
+        comm.Disconnect()
+        return 0;
