@@ -1,13 +1,13 @@
 #!/bin/bash
 
-#SBATCH --job-name=run_tests
+#SBATCH --job-name=mpi_benchmark 
 #SBATCH --time=00:10:00
 #SBATCH --output="stdout.txt"
-#SBATCH --error="stderr.txt"
+#SBATCH --error="joberr1.txt"
 #SBATCH --account=plgpympdatampiswe-cpu
 #SBATCH --cpus-per-task=1
-#SBATCH --partition=plgrid
-#SBTACH --ntasks-per-node=1
+#SBATCH --partition=plgrid 
+#SBATCH --ntasks-per-node=1 
 #SBATCH --mem=5G
 
 module load python
