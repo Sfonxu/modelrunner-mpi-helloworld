@@ -10,7 +10,9 @@ class TestClass(ModelBase):
     parameters_default = {"a": 1}
 
     def __call__(self):
+        text_out = []
         for it in np.arange(self.parameters["a"]):
-            print(f"Hello World!, it={it}")
+            text_out.append(f"Hello World!, it={it}")
+        return text_out
 
 model = TestClass()
