@@ -26,24 +26,25 @@ for fn in os.listdir(f"{path}/test_files"):
 
 if __name__ == "__main__":
         submit_jobs(f"{inpath}/{files[0]}",
+                    name_base=f"{files[0][:-3]_out}",
                     parameters=params1,
-                    output_folder=outpath,
+                    output_folder="output_files",
                     output_format="hdf5",
-                    method="foreground"
+                    method="srun"
                     )
 
-        submit_jobs(f"{inpath}/{files[1]}",
-                    parameters=params2,
-                    name_base=f"{files[1][:-3]}_out",
-                    output_folder=outpath,
-                    output_format="hdf5",
-                    method="foreground"
-                    )
+        # submit_jobs(f"{inpath}/{files[1]}",
+        #             parameters=params2,
+        #             name_base=f"{files[1][:-3]}_out",
+        #             output_folder=outpath,
+        #             output_format="hdf5",
+        #             method="srun"
+        #             )
         
-        submit_jobs(f"{inpath}/{files[2]}",
-                    parameters=params3,
-                    name_base=f"{files[2][:-3]}_out",
-                    output_folder=outpath,
-                    output_format="hdf5",
-                    method="foreground"
-                    )
+        # submit_jobs(f"{inpath}/{files[2]}",
+        #             parameters=params3,
+        #             name_base=f"{files[2][:-3]}_out",
+        #             output_folder=outpath,
+        #             output_format="hdf5",
+        #             method="srun"
+        #             )
